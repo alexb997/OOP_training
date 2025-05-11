@@ -9,6 +9,6 @@ public class PayPalPayment implements PaymentStrategy {
 
     @Override
     public void pay(double amount) {
-        // TODO: Implement payment logic
+        System.out.println("Paid $" + amount + " using PayPal account " + email);
     }
 }

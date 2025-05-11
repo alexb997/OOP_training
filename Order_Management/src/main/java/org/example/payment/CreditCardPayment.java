@@ -11,6 +11,6 @@ public class CreditCardPayment implements PaymentStrategy {
 
     @Override
     public void pay(double amount) {
-        // TODO: Implement payment logic
+        System.out.println("Paid $" + amount + " using Credit Card ending with " + cardNumber.substring(cardNumber.length() - 4));
     }
 }

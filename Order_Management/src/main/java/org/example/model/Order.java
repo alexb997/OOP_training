@@ -13,12 +13,21 @@ public class Order {
         this.status = OrderStatus.PENDING;
     }
 
-    public void placeOrder() {
-        // TODO: Call paymentStrategy.pay()
-        // TODO: Update order status
+    public void placeOrder(double amount) {
+        paymentStrategy.pay(amount);
+        this.status = OrderStatus.CONFIRMED;
     }
 
     public void trackStatus() {
-        // TODO: Print current status
+        System.out.println("Order Status: " + status);
+    }
+
+    public void nextStatus() {
+        switch (status) {
+            case PENDING -> status = OrderStatus.CONFIRMED;
+            case CONFIRMED -> status = OrderStatus.SHIPPED;
+            case SHIPPED -> status = OrderStatus.DELIVERED;
+            case DELIVERED -> System.out.println("Order already delivered.");
+        }
     }
 }
