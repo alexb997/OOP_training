@@ -1,26 +1,43 @@
 package org.example.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Member {
-    protected String name;
-    protected List<Book> borrowedBooks;
+public abstract class Member implements FinesApplicable{
+    protected final String name;
+    protected final List<Book> borrowedBooks = new ArrayList<>();
 
     public Member(String name) {
-        // TODO: Initialize fields
+        this.name = name;
     }
 
+    public abstract int getMaxBooks();
+    public abstract int getDueDays();
+    public abstract double getFineRate();
+
     public String getName() {
-        // TODO
-        return null;
+        return name;
+    }
+
+    public boolean canBorrow() {
+        return borrowedBooks.size() < getMaxBooks();
+    }
+
+    public void borrowBook(Book book) {
+        borrowedBooks.add(book);
+    }
+
+    public void returnBook(Book book) {
+        borrowedBooks.remove(book);
     }
 
     public List<Book> getBorrowedBooks() {
-        // TODO
-        return null;
+        return borrowedBooks;
     }
 
-    public abstract int getBorrowLimit();
-    public abstract int getLoanDays();
-    public abstract double getFinePerDay();
+    @Override
+    public double calculateFine(long borrowedDay, long currentDay) {
+        long daysLate = currentDay - borrowedDay - getDueDays();
+        return Math.max(0, daysLate * getFineRate());
+    }
 }

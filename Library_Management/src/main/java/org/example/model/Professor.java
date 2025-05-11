@@ -3,24 +3,14 @@ package org.example.model;
 public class Professor extends Member {
     public Professor(String name) {
         super(name);
-        // TODO
     }
 
     @Override
-    public int getBorrowLimit() {
-        // TODO
-        return 0;
-    }
+    public int getMaxBooks() { return 5; }
 
     @Override
-    public int getLoanDays() {
-        // TODO
-        return 0;
-    }
+    public int getDueDays() { return 28; }
 
     @Override
-    public double getFinePerDay() {
-        // TODO
-        return 0;
-    }
+    public double getFineRate() { return 0.5; }
 }
