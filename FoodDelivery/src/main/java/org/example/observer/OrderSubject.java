@@ -1,9 +1,24 @@
 package org.example.observer;
 
+import org.example.model.Order;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface OrderSubject {
-    void registerObserver(OrderObserver observer);
-    void removeObserver(OrderObserver observer);
-    void notifyObservers(String message);
+public class OrderSubject {
+    private List<OrderObserver> observers = new ArrayList<>();
+
+    public void attach(OrderObserver observer) {
+        observers.add(observer);
+    }
+
+    public void detach(OrderObserver observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers(Order order) {
+        for (OrderObserver observer : observers) {
+            observer.update(order);
+        }
+    }
 }

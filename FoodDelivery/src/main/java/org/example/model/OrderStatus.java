@@ -1,5 +1,9 @@
 package org.example.model;
 
 public enum OrderStatus {
-    PLACED, PREPARING, OUT_FOR_DELIVERY, DELIVERED;
+    PENDING,
+    PROCESSING,
+    OUT_FOR_DELIVERY,
+    DELIVERED,
+    CANCELLED
 }

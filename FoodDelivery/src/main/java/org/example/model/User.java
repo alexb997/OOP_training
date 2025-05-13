@@ -1,20 +1,13 @@
 package org.example.model;
 
-public class User {
+public abstract class User {
     private String name;
-    private String email;
 
-    public User(String name, String email) {
+    public User(String name) {
         this.name = name;
-        this.email = email;
     }
 
-    public String getName() { return name; }
-
-    public String getEmail() { return email; }
-
-    @Override
-    public String toString() {
-        return name + " (" + email + ")";
+    public String getName() {
+        return name;
     }
 }

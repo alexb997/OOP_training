@@ -1,14 +1,25 @@
 package org.example.promotion;
 
-public class PercentageDiscount implements Promotion {
-    private double percent;
+import org.example.model.Dish;
 
-    public PercentageDiscount(double percent) {
-        this.percent = percent;
+import java.util.List;
+
+public class PercentageDiscount implements Promotion {
+    private String name;
+    private double discountPercentage;
+
+    public PercentageDiscount(String name, double discountPercentage) {
+        this.name = name;
+        this.discountPercentage = discountPercentage / 100.0;
     }
 
     @Override
-    public double apply(double total) {
-        return total - (total * percent / 100);
+    public double apply(List<Dish> items, double totalAmount) {
+        return totalAmount * (1 - discountPercentage);
+    }
+
+    @Override
+    public String getDescription() {
+        return name + ": " + (discountPercentage * 100) + "% off";
     }
 }
